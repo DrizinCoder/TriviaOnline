@@ -9,6 +9,16 @@ export default function QuizSetup() {
   const [difficulty, setDifficulty] = useState("");
   const [type, setType] = useState("");
 
+  const startQuiz = async () => {
+
+    let url = `https://opentdb.com/api.php?amount=${questions}`
+    if (category) url += `&categoy=${category}`;
+    if (difficulty) url += `&difficulty=${difficulty}`;
+    if (type) url += `&type=${type}`
+
+    console.log(url)
+  }
+
   return (
     <div className="w-full max-w-lg bg-slate-800 shadow-2xl rounded-3xl p-8 space-y-6 border border-slate-700">
       <h2 className="text-2xl font-bold text-center text-slate-100 mb-2">
@@ -60,7 +70,7 @@ export default function QuizSetup() {
         ]}
       />
 
-      <Button onClick={() => alert("Iniciar Quiz!")}>Iniciar Quiz 🚀</Button>
+      <Button onClick={startQuiz}>Iniciar Quiz 🚀</Button>
     </div>
   );
 }
