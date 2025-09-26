@@ -8,15 +8,33 @@ export default function QuizSetup() {
   const [category, setCategory] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [type, setType] = useState("");
+  const [quizData, setQuizData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const startQuiz = async () => {
+    setLoading(true);
+    setError(null);
+
 
     let url = `https://opentdb.com/api.php?amount=${questions}`
     if (category) url += `&categoy=${category}`;
     if (difficulty) url += `&difficulty=${difficulty}`;
     if (type) url += `&type=${type}`
 
-    console.log(url)
+    try{
+      const response = await fetch(url);
+      if(!response.ok) throw new Error("Erro ao buscar perguntas");
+      const data = await response.json();
+      setQuizData(data.results);
+      console.log(data.results);
+      alert("Quiz carregado!")
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+      console.log(quizData)
+    }
   }
 
   return (
@@ -70,7 +88,8 @@ export default function QuizSetup() {
         ]}
       />
 
-      <Button onClick={startQuiz}>Iniciar Quiz 🚀</Button>
+      <Button onClick={startQuiz} disabled={loading}>
+      {loading ? "Carregando...": "Iniciar Quiz"}</Button>
     </div>
   );
 }
