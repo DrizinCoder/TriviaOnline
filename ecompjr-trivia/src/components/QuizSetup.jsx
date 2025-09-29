@@ -18,7 +18,7 @@ export default function QuizSetup() {
 
 
     let url = `https://opentdb.com/api.php?amount=${questions}`
-    if (category) url += `&categoy=${category}`;
+    if (category) url += `&category=${category}`;
     if (difficulty) url += `&difficulty=${difficulty}`;
     if (type) url += `&type=${type}`
 
@@ -33,7 +33,6 @@ export default function QuizSetup() {
       setError(err.message);
     } finally {
       setLoading(false);
-      console.log(quizData)
     }
   }
 
