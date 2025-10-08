@@ -2,6 +2,7 @@ import { useState } from "react";
 import InputField from "./InputField";
 import SelectField from "./SelectField";
 import Button from "./Button";
+import axios from "axios";
 
 export default function QuizSetup({ onQuizStart }) {
   const [questions, setQuestions] = useState(5);
@@ -23,12 +24,17 @@ export default function QuizSetup({ onQuizStart }) {
     if (type) url += `&type=${type}`
 
     try{
-      const response = await fetch(url);
-      if(!response.ok) throw new Error("Erro ao buscar perguntas");
-      const data = await response.json();
-      setQuizData(data.results);
+      const response = await axios.get(url);
+      
+      const data = response.data; 
+      
+      if (data.response_code !== 0) {
+         throw new Error("Não foram encontradas perguntas. Tente outras configurações.");
+      }
+      
+      setQuizData(data.results); 
       console.log(data.results);
-      onQuizStart(data.results); 
+      onQuizStart(data.results);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -57,10 +63,31 @@ export default function QuizSetup({ onQuizStart }) {
         value={category}
         onChange={(e) => setCategory(e.target.value)}
         options={[
-          { value: "", label: "Selecione" },
+          { value: "", label: "Any Category" },
           { value: "9", label: "General Knowledge" },
+          { value: "10", label: "Entertainment: Books" },
+          { value: "11", label: "Entertainment: Film" },
+          { value: "12", label: "Entertainment: Music" },
+          { value: "13", label: "Entertainment: Musicals & Theatres" },
+          { value: "14", label: "Entertainment: Television" },
+          { value: "15", label: "Entertainment: Video Games" },
+          { value: "16", label: "Entertainment: Board Games" },
+          { value: "17", label: "Science & Nature" },
           { value: "18", label: "Science: Computers" },
+          { value: "19", label: "Science: Mathematics" },
+          { value: "20", label: "Mythology" },
+          { value: "21", label: "Sports" },
+          { value: "22", label: "Geography" },
           { value: "23", label: "History" },
+          { value: "24", label: "Politics" },
+          { value: "25", label: "Art" },
+          { value: "26", label: "Celebrities" },
+          { value: "27", label: "Animals" },
+          { value: "28", label: "Vehicles" },
+          { value: "29", label: "Entertainment: Comics" },
+          { value: "30", label: "Science: Gadgets" },
+          { value: "31", label: "Entertainment: Japanese Anime & Manga" },
+          { value: "32", label: "Entertainment: Cartoon & Animations" },
         ]}
       />
 
