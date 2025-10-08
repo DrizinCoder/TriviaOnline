@@ -3,7 +3,7 @@ import InputField from "./InputField";
 import SelectField from "./SelectField";
 import Button from "./Button";
 
-export default function QuizSetup() {
+export default function QuizSetup({ onQuizStart }) {
   const [questions, setQuestions] = useState(5);
   const [category, setCategory] = useState("");
   const [difficulty, setDifficulty] = useState("");
@@ -28,7 +28,7 @@ export default function QuizSetup() {
       const data = await response.json();
       setQuizData(data.results);
       console.log(data.results);
-      alert("Quiz carregado!")
+      onQuizStart(data.results); 
     } catch (err) {
       setError(err.message);
     } finally {
