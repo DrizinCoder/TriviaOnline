@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import QuestionCard from "./QuestionCard";
 import Button from "./Button";
 
@@ -7,17 +7,22 @@ export default function QuizScreen({ questions, onFinish }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
   const [isAnswered, setIsAnswered] = useState(false);
+  const [shuffledOptions, setShuffledOptions] = useState([]);
 
   const currentQuestion = questions[current];
   if (!currentQuestion) {
     return <p>Carregando perguntas...</p>;
   }
 
-  const allOptions = [
-    ...currentQuestion.incorrect_answers, 
-    currentQuestion.correct_answer
-  ].sort(() => Math.random() - 0.5); 
-  
+  useEffect(() => {
+    const options = [
+        ...currentQuestion.incorrect_answers, 
+        currentQuestion.correct_answer
+    ].sort(() => Math.random() - 0.5);
+    
+    setShuffledOptions(options);
+
+  }, [current, currentQuestion]); 
   
   const handleAnswerSelect = (answer) => {
     if (isAnswered) return;
@@ -53,7 +58,7 @@ export default function QuizScreen({ questions, onFinish }) {
       
       <QuestionCard
         question={currentQuestion.question}
-        options={allOptions}
+        options={shuffledOptions} 
         selectedAnswer={selectedAnswer}
         handleAnswerSelect={handleAnswerSelect}
         isAnswered={isAnswered}
