@@ -19,9 +19,9 @@ export default function QuizSetup({ onQuizStart }) {
 
 
     let url = `https://opentdb.com/api.php?amount=${questions}`
-    if (category) url += `&category=${category}`;
-    if (difficulty) url += `&difficulty=${difficulty}`;
-    if (type) url += `&type=${type}`
+    if (category && category !== "0") url += `&category=${category}`;
+    if (difficulty && difficulty !== "0") url += `&difficulty=${difficulty}`;
+    if (type && type !== "0") url += `&type=${type}`
 
     try{
       const response = await axios.get(url);
@@ -63,7 +63,7 @@ export default function QuizSetup({ onQuizStart }) {
         value={category}
         onChange={(e) => setCategory(e.target.value)}
         options={[
-          { value: "", label: "Any Category" },
+          { value: "0", label: "Any Category" },
           { value: "9", label: "General Knowledge" },
           { value: "10", label: "Entertainment: Books" },
           { value: "11", label: "Entertainment: Film" },
@@ -96,7 +96,7 @@ export default function QuizSetup({ onQuizStart }) {
         value={difficulty}
         onChange={(e) => setDifficulty(e.target.value)}
         options={[
-          { value: "", label: "Selecione" },
+          { value: "0", label: "Selecione" },
           { value: "easy", label: "Fácil" },
           { value: "medium", label: "Médio" },
           { value: "hard", label: "Difícil" },
@@ -108,7 +108,7 @@ export default function QuizSetup({ onQuizStart }) {
         value={type}
         onChange={(e) => setType(e.target.value)}
         options={[
-          { value: "", label: "Selecione" },
+          { value: "0", label: "Selecione" },
           { value: "multiple", label: "Múltipla Escolha" },
           { value: "boolean", label: "Verdadeiro/Falso" },
         ]}
