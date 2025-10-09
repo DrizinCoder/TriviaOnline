@@ -6,13 +6,13 @@ export default function ResultScreen({ score, total, onRestart }) {
       
       <div className="w-full max-w-md p-8 flex flex-col items-center space-y-6 ">
         
-        <h2 className="text-3xl font-bold text-slate-100">🎉 Resultado</h2>
+        <h2 className="text-3xl font-bold text-slate-100">🎉 Result</h2>
         
         <p className="text-xl text-center">
-          Você acertou <span className="text-pink-500 font-bold">{score}</span> de <span className="font-bold">{total}</span> perguntas!
+          You got <span className="text-pink-500 font-bold">{score}</span> out of <span className="font-bold">{total}</span> questions right!
         </p>
 
-        <Button onClick={onRestart}>Jogar Novamente</Button>
+        <Button onClick={onRestart}>Play again</Button>
         
       </div>
   );

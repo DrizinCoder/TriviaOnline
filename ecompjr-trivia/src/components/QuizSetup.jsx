@@ -29,7 +29,7 @@ export default function QuizSetup({ onQuizStart }) {
       const data = response.data; 
       
       if (data.response_code !== 0) {
-         throw new Error("Não foram encontradas perguntas. Tente outras configurações.");
+         throw new Error("No questions found. Try different settings.");
       }
       
       setQuizData(data.results); 
@@ -45,21 +45,21 @@ export default function QuizSetup({ onQuizStart }) {
   return (
     <div className="w-full max-w-lg bg-slate-800 shadow-2xl rounded-3xl p-8 space-y-6 border border-slate-700">
       <h2 className="text-2xl font-bold text-center text-slate-100 mb-2">
-        Configuração do Quiz
+        Quiz Configuration
       </h2>
       <p className="text-center text-sm text-slate-400 mb-6">
-        Personalize o quiz antes de começar a jogar!
+        Customize the quiz before you start playing!
       </p>
 
       <InputField
-        label="Número de Perguntas"
+        label="Number of questions"
         type="number"
         value={questions}
         onChange={setQuestions}
       />
 
       <SelectField
-        label="Categoria"
+        label="Category"
         value={category}
         onChange={setCategory}
         options={[
@@ -92,30 +92,30 @@ export default function QuizSetup({ onQuizStart }) {
       />
 
       <SelectField
-        label="Dificuldade"
+        label="Difficulty"
         value={difficulty}
         onChange={setDifficulty}
         options={[
-          { value: "0", label: "Selecione" },
-          { value: "easy", label: "Fácil" },
-          { value: "medium", label: "Médio" },
-          { value: "hard", label: "Difícil" },
+          { value: "0", label: "Any difficulty" },
+          { value: "easy", label: "Easy" },
+          { value: "medium", label: "Medium" },
+          { value: "hard", label: "Hard" },
         ]}
       />
 
       <SelectField
-        label="Tipo"
+        label="Type"
         value={type}
         onChange={setType}
         options={[
-          { value: "0", label: "Selecione" },
-          { value: "multiple", label: "Múltipla Escolha" },
-          { value: "boolean", label: "Verdadeiro/Falso" },
+          { value: "0", label: "Any type" },
+          { value: "multiple", label: "Multiple choice" },
+          { value: "boolean", label: "True/False" },
         ]}
       />
 
       <Button onClick={startQuiz} disabled={loading}>
-      {loading ? "Carregando...": "Iniciar Quiz"}</Button>
+      {loading ? "loading...": "Start Quiz"}</Button>
     </div>
   );
 }

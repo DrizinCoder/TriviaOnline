@@ -11,7 +11,7 @@ export default function QuizScreen({ questions, onFinish }) {
 
   const currentQuestion = questions[current];
   if (!currentQuestion) {
-    return <p>Carregando perguntas...</p>;
+    return <p>Loading questions...</p>;
   }
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export default function QuizScreen({ questions, onFinish }) {
     <div className="min-h-screen flex flex-col items-center justify-center p-6  text-slate-100 space-y-6">
       
       <div className="text-center text-lg mb-4">
-        Questão {current + 1} de {questions.length}
+        Question {current + 1} of {questions.length}
       </div>
       
       <QuestionCard
@@ -66,7 +66,7 @@ export default function QuizScreen({ questions, onFinish }) {
       />
       
       <Button onClick={handleNext} disabled={!isAnswered}>
-        {current + 1 === questions.length ? "Finalizar Quiz" : "Próxima Pergunta"}
+        {current + 1 === questions.length ? "Finish Quiz" : "Next Question"}
       </Button>
     </div>
   );

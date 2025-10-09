@@ -18,7 +18,7 @@ export default function SelectField({ label, value, onChange, options }) {
         <SelectTrigger 
             className="w-full rounded-xl border border-slate-600 bg-slate-900 p-2 text-slate-100 focus:ring-2 focus:ring-pink-500 focus:border-pink-500 ring-offset-0 h-10"
         >
-          <SelectValue placeholder="Selecione..." />
+          <SelectValue placeholder="Choose..." />
         </SelectTrigger>
         
         <SelectContent 
