@@ -55,13 +55,13 @@ export default function QuizSetup({ onQuizStart }) {
         label="Número de Perguntas"
         type="number"
         value={questions}
-        onChange={(e) => setQuestions(e.target.value)}
+        onChange={setQuestions}
       />
 
       <SelectField
         label="Categoria"
         value={category}
-        onChange={(e) => setCategory(e.target.value)}
+        onChange={setCategory}
         options={[
           { value: "0", label: "Any Category" },
           { value: "9", label: "General Knowledge" },
@@ -94,7 +94,7 @@ export default function QuizSetup({ onQuizStart }) {
       <SelectField
         label="Dificuldade"
         value={difficulty}
-        onChange={(e) => setDifficulty(e.target.value)}
+        onChange={setDifficulty}
         options={[
           { value: "0", label: "Selecione" },
           { value: "easy", label: "Fácil" },
@@ -106,7 +106,7 @@ export default function QuizSetup({ onQuizStart }) {
       <SelectField
         label="Tipo"
         value={type}
-        onChange={(e) => setType(e.target.value)}
+        onChange={setType}
         options={[
           { value: "0", label: "Selecione" },
           { value: "multiple", label: "Múltipla Escolha" },
