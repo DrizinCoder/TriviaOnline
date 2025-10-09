@@ -50,7 +50,7 @@ export default function QuizScreen({ questions, onFinish }) {
   
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100 space-y-6">
+    <div className="min-h-screen flex flex-col items-center justify-center p-6  text-slate-100 space-y-6">
       
       <div className="text-center text-lg mb-4">
         Questão {current + 1} de {questions.length}

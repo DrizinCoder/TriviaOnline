@@ -7,7 +7,7 @@ export default function QuestionCard({
   correctAnswer       
 }) {
   const getButtonClasses = (opt) => {
-    let classes = 'bg-slate-900 text-slate-100 hover:opacity-90 transition-all';
+    let classes = 'bg-slate-900 text-slate-100 hover:bg-slate-700 transition-all';
     
     if (isAnswered) {
         if (opt === correctAnswer) {
@@ -26,7 +26,7 @@ export default function QuestionCard({
   };
 
   return (
-    <div className="w-full bg-slate-800 rounded-3xl p-6 space-y-4 border border-slate-700 shadow-lg">
+    <div className="w-full space-y-4"> 
       <h2 
         className="text-xl font-semibold text-slate-100"
         dangerouslySetInnerHTML={{ __html: question }} 
@@ -38,7 +38,7 @@ export default function QuestionCard({
             key={idx}
             onClick={() => handleAnswerSelect(opt)} 
             disabled={isAnswered} 
-            className={`w-full text-left p-3 rounded-xl border border-slate-600 
+            className={`w-full text-left p-3 rounded-xl
                         ${getButtonClasses(opt)}`}
           >
             <span dangerouslySetInnerHTML={{ __html: opt }} /> 
